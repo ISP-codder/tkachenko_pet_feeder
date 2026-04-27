@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Вход | Pet Feeder</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="../static/styles.css" />
+	</head>
+	<body>
+		<div class="gradient-bg">
+			<div class="blob blob-1"></div>
+			<div class="blob blob-2"></div>
+			<div class="blob blob-3"></div>
+			<div class="blob blob-4"></div>
+			<div class="blob blob-5"></div>
+			<div class="blob blob-6"></div>
+		</div>
+
+		<div class="container-fluid">
+			<div class="glass-panel" style="max-width: 400px">
+				<h1 style="font-size: 2.5rem; margin-bottom: 20px">Добро пожаловать</h1>
+				<p class="sub-titles">Войдите для продолжения</p>
+
+				<form method="post">
+					<input
+						type="text"
+						name="username"
+						placeholder="Логин"
+						required
+						style="
+							width: 100%;
+							padding: 15px;
+							margin-bottom: 15px;
+							border-radius: 15px;
+							border: 1px solid rgba(0, 0, 0, 0.1);
+							background: rgba(255, 255, 255, 0.5);
+							outline: none;
+						" />
+
+					<input
+						type="password"
+						name="password"
+						placeholder="Пароль"
+						required
+						style="
+							width: 100%;
+							padding: 15px;
+							margin-bottom: 25px;
+							border-radius: 15px;
+							border: 1px solid rgba(0, 0, 0, 0.1);
+							background: rgba(255, 255, 255, 0.5);
+							outline: none;
+						" />
+
+					<button
+						type="submit"
+						class="custom-btn"
+						style="width: 100%; margin: 0">
+						Войти
+					</button>
+				</form>
+
+				{% if error %}
+				<p style="color: #ff4d4d; margin-top: 20px; font-weight: 600">
+					{{ error }}
+				</p>
+				{% endif %}
+			</div>
+		</div>
+	</body>
+</html>

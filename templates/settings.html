@@ -1,0 +1,119 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Settings | Pet Feeder
+{% endblock %}
+
+{% block main %}
+<style>
+	*{
+		overflow-y: scroll;
+	}
+</style>
+<div class="gradient-bg">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="blob blob-4"></div>
+    <div class="blob blob-5"></div>
+    <div class="blob blob-6"></div>
+</div>
+
+<div class="container-fluid settings-container">
+    <div class="glass-panel settings-panel">
+        <h1 style="font-size: 2.5rem; text-align: center; margin-bottom: 10px;">Settings</h1>
+        <p class="sub-titles" style="text-align: center; margin-bottom: 40px;">Configure your intelligent feeder</p>
+        
+        <form action="/settings" method="post">
+            
+            <div class="sub-headings mb-3">
+                <h4 class="settings-section-title">Delay Between Detect to Feed</h4>
+            </div>
+
+            <div class="delay-row mb-4">
+                <div class="delay-input-group">
+                    <label>Seconds</label>
+                    <input type="number" class="form-control" value="{{ settings.seconds }}" min="0" max="60" name="seconds" placeholder="00">
+                </div>
+                <div class="delay-input-group">
+                    <label>Minutes</label>
+                    <input type="number" class="form-control" value="{{ settings.minutes }}" min="0" max="60" name="minutes" placeholder="00">
+                </div>
+                <div class="delay-input-group">
+                    <label>Hours</label>
+                    <input type="number" class="form-control" value="{{ settings.hours }}" min="0" max="24" name="hours" placeholder="00">
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="options-grid mb-4">
+                <div class="option-column">
+                    <h4 class="settings-section-title">Pet to detect</h4>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="petSelection" id="dogButton" value="detectDogs" {% if settings.pet_id == 16 %} checked {% endif %}>
+                        <label class="form-check-label" for="dogButton">Detect Dogs</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="petSelection" id="catButton" value="detectCats" {% if settings.pet_id == 15 %} checked {% endif %}>
+                        <label class="form-check-label" for="catButton">Detect Cats</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="petSelection" id="birdButton" value="detectBirds" {% if settings.pet_id == 14 %} checked {% endif %}>
+                        <label class="form-check-label" for="birdButton">Detect Birds</label>
+                    </div>
+                </div>
+
+                <div class="option-column">
+                    <h4 class="settings-section-title">Detection Accuracy</h4>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="accuracy" id="lowButton" value="lowAccuracy" {% if settings.accuracy == 0.5 %} checked {% endif %}>
+                        <label class="form-check-label" for="lowButton">Low</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="accuracy" id="medButton" value="medAccuracy" {% if settings.accuracy == 0.65 %} checked {% endif %}>
+                        <label class="form-check-label" for="medButton">Medium</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="accuracy" id="highButton" value="highAccuracy" {% if settings.accuracy == 0.8 %} checked {% endif %}>
+                        <label class="form-check-label" for="highButton">High</label>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="options-grid mb-4">
+                <div class="option-column">
+                    <h4 class="settings-section-title">Food Portion Size</h4>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="portion" id="smallPortionBtn" value="smallPortion" {% if settings.portion == 'SMALL' %} checked {% endif %}>
+                        <label class="form-check-label" for="smallPortionBtn">Small</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="portion" id="medPortionBtn" value="medPortion" {% if settings.portion == 'MED' %} checked {% endif %}>
+                        <label class="form-check-label" for="medPortionBtn">Medium</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="portion" id="largePortionBtn" value="largePortion" {% if settings.portion == 'LARGE' %} checked {% endif %}>
+                        <label class="form-check-label" for="largePortionBtn">Large</label>
+                    </div>
+                </div>
+
+                <div class="option-column system-status pt-1">
+                    <h4 class="settings-section-title">System Status</h4>
+                    <div class="form-check form-switch pt-1">
+                        <input class="form-check-input" type="checkbox" name="auto_feed" role="switch" id="autoFeedSwitch" {% if settings.auto_feed %} checked {% endif %}>
+                        <label class="form-check-label ml-2" for="autoFeedSwitch">Auto Feed</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-footer mt-5 pt-3">
+                <button class="custom-btn w-100SaveChanges" type="submit">Save Changes</button>
+                <a href="/" class="back-dashboard mt-3">← Back to Dashboard</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

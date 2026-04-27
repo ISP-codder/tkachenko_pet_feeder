@@ -1,0 +1,367 @@
+/* Подключаем современный шрифт Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+
+:root {
+	--glass-bg: rgba(255, 255, 255, 0.18); /* Полупрозрачное стекло */
+	--glass-border: rgba(255, 255, 255, 0.4); /* Светлая каемка по краям */
+	--glass-blur: blur(35px); /* Эффект матового размытия */
+	--text-main: #1d1d1f; /* Контрастный темный текст */
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	min-height: 100vh;
+	font-family: 'Inter', sans-serif;
+	background-color: #ffffff; /* Чистый белый фон */
+	overflow: hidden; /* Чтобы шары не создавали скролл */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/* --- КОНТЕЙНЕР ДЛЯ ЖИДКОГО ГРАДИЕНТА --- */
+.gradient-bg {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: -1;
+}
+
+/* СТИЛЬ ДЛЯ "ЖИДКИХ" ШАРОВ (BLOBS) */
+.blob {
+	position: absolute;
+	width: 1200px; /* Огромный размер для заполнения всего экрана */
+	height: 1200px;
+	filter: blur(120px); /* Сильное размытие для мягких переходов */
+	border-radius: 50%;
+	mix-blend-mode: multiply; /* Физически правильное смешивание цветов */
+	opacity: 0.75; /* Высокая насыщенность */
+	animation: liquidFullMove 22s infinite alternate ease-in-out;
+}
+
+/* РАССТАНОВКА ЦВЕТОВ (Лиловый, Голубой, Мятный с твоего скриншота) */
+.blob-1 {
+	top: -300px;
+	left: -200px;
+	background: #dcd0ff; /* Лиловый */
+	animation-duration: 15s;
+}
+
+.blob-2 {
+	top: 10%;
+	left: 35%;
+	background: #bfe9ff; /* Небесно-голубой */
+	animation-duration: 25s;
+	animation-delay: -5s;
+}
+
+.blob-3 {
+	bottom: -400px;
+	right: -300px;
+	background: #c2ffd9; /* Мятно-зеленый */
+	animation-duration: 18s;
+}
+
+.blob-4 {
+	top: 40%;
+	right: -150px;
+	background: #e0d7ff; /* Светло-фиолетовый акцент */
+	animation-duration: 20s;
+}
+
+.blob-5 {
+	bottom: 15%;
+	left: -200px;
+	background: #ccf5ff; /* Бирюзовый акцент */
+	animation-duration: 12s;
+}
+
+.blob-6 {
+	bottom: 40%;
+	right: 25%;
+	background: #d4ffea; /* Светло-мятный акцент */
+	animation-duration: 28s;
+}
+
+/* --- АНИМАЦИЯ: БЫСТРОЕ И РАЗМАШИСТОЕ ДВИЖЕНИЕ --- */
+@keyframes liquidFullMove {
+	0% {
+		transform: translate(0, 0) scale(1) rotate(0deg);
+	}
+	33% {
+		transform: translate(450px, 150px) scale(1.3) rotate(120deg);
+	}
+	66% {
+		transform: translate(-350px, 350px) scale(0.8) rotate(240deg);
+	}
+	100% {
+		transform: translate(150px, -250px) scale(1.1) rotate(360deg);
+	}
+}
+
+/* --- СТИЛЬ СТЕКЛЯННОЙ КАРТОЧКИ --- */
+.container-fluid {
+	flex-direction: column;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	padding: 20px;
+}
+
+.glass-panel {
+	background: var(--glass-bg);
+	backdrop-filter: var(--glass-blur);
+	-webkit-backdrop-filter: var(--glass-blur);
+	border: 1px solid var(--glass-border);
+	border-radius: 40px;
+	padding: 60px;
+	box-shadow: 0 20px 60px rgba(0, 0, 0, 0.04); /* Очень мягкая тень */
+	max-width: 480px;
+	width: 90%;
+	text-align: center;
+	z-index: 10;
+}
+
+/* Типографика */
+h1 {
+	font-weight: 800;
+	font-size: 3rem;
+	letter-spacing: -1.5px;
+	color: var(--text-main);
+	margin-bottom: 5px;
+}
+
+.sub-titles {
+	font-weight: 500;
+	color: rgba(0, 0, 0, 0.6);
+	margin-bottom: 45px;
+}
+
+/* Стеклянные Кнопки */
+.custom-btn {
+	background: rgba(255, 255, 255, 0.95) !important;
+	color: #000000 !important;
+	border: 1px solid rgba(0, 0, 0, 0.05) !important;
+	padding: 16px 35px !important;
+	border-radius: 20px !important;
+	font-weight: 600 !important;
+	font-size: 1.1rem !important;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02) !important;
+	margin: 10px;
+	text-decoration: none;
+	display: inline-block;
+}
+
+.custom-btn:hover {
+	background: #ffffff !important;
+	transform: translateY(-3px) scale(1.02);
+	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05) !important;
+}
+
+.info {
+	margin-top: 40px;
+	color: rgba(0, 0, 0, 0.4);
+	font-size: 0.9rem;
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 768px) {
+	.glass-panel {
+		padding: 40px;
+		border-radius: 30px;
+	}
+	h1 {
+		font-size: 2.2rem;
+	}
+	.custom-btn {
+		width: 100%;
+		margin: 5px 0;
+	}
+}
+/* --- СТИЛИ ДЛЯ СТРИМА (stream.html) --- */
+
+/* Широкая панель специально для видео */
+.stream-panel {
+    max-width: 800px;
+    margin: auto;
+    padding: 40px;
+}
+
+/* Стеклянная рамка вокруг камеры */
+.video-wrapper {
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 24px;
+    padding: 10px;
+    margin-bottom: 35px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.video-wrapper img {
+    border-radius: 16px;
+    width: 100%;
+    display: block;
+}
+
+/* Контейнер для кнопок, чтобы они красиво переносились */
+.action-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Второстепенные кнопки (полупрозрачные) */
+.nav-btn {
+    background: rgba(255, 255, 255, 0.5) !important;
+    font-size: 0.95rem !important;
+}
+/* --- СТИЛИ ДЛЯ settings.html (Дополнение к styles.css) --- */
+
+/* Основной контейнер страницы */
+.settings-container {
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 40px 0;
+}
+
+/* Стеклянная панель настроек (РАСШИРЕННАЯ) */
+.settings-panel {
+  max-width: 700px; /* Увеличили ширину с 480px до 700px */
+  text-align: left; /* Элементы внутри выровнены по левому краю */
+  margin: auto;
+  padding: 60px; /* Увеличили отступы внутри панели */
+}
+
+/* Компоновка времени задержки */
+.delay-row {
+  display: flex;
+  gap: 15px;
+  justify-content: space-between;
+}
+
+.delay-input-group {
+  flex: 1; /* Инпуты делят ширину поровну */
+}
+
+.delay-input-group label {
+  font-size: 0.8rem;
+  opacity: 0.6;
+  margin-left: 5px;
+  margin-bottom: 2px;
+  display: block;
+}
+
+/* Компоновка сеток опций */
+.options-grid {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.option-column {
+  flex: 1; /* Колонки делят ширину поровну */
+}
+
+.system-status {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* Заголовки секций */
+.settings-section-title {
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+/* Разделитель hr */
+.glass-panel hr {
+  opacity: 0.1;
+  margin: 30px 0;
+  border-color: #000;
+}
+
+/* Стеклянные текстовые инпуты */
+.settings-container .form-control {
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.1);
+  padding: 12px;
+  width: 100%;
+  background: rgba(255,255,255,0.5); /* Полупрозрачный белый */
+  font-family: 'Inter', sans-serif;
+  color: #000;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+  transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.settings-container .form-control:focus {
+  border-color: rgba(0,0,0,0.2);
+  background: rgba(255,255,255,0.7);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  outline: none;
+}
+
+/* Радиокнопки и лейблы */
+.form-check {
+  margin-bottom: 10px;
+  padding-left: 1.5rem; /* Восстанавливаем Bootstrap padding */
+}
+
+.form-check-input {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-top: 0.15rem;
+  cursor: pointer;
+}
+
+.form-check-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: #000;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+/* Свитч */
+.form-switch .form-check-input {
+  width: 2.5rem;
+  height: 1.2rem;
+  margin-left: -2.5rem;
+  cursor: pointer;
+}
+
+.form-switch .form-check-input:checked {
+  background-color: #0d6efd; /* Стандартный синий, можно поменять */
+  border-color: #0d6efd;
+}
+
+/* Футер настроек */
+.settings-footer {
+  text-align: center;
+}
+
+.back-dashboard {
+  display: block;
+  margin-top: 20px;
+  color: rgba(0,0,0,0.4);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.back-dashboard:hover {
+  color: #000;
+}
+
+/* Утилита ширины */
+.w-100 { width: 100%; }

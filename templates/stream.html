@@ -1,0 +1,55 @@
+{% extends "layout.html" %} 
+{% block title %}Live Stream | Pet Feeder{% endblock %} 
+
+{% block main %}
+<div class="gradient-bg">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="blob blob-4"></div>
+    <div class="blob blob-5"></div>
+    <div class="blob blob-6"></div>
+</div>
+
+<div class="container-fluid" style="padding: 40px 15px;">
+    <div class="glass-panel stream-panel">
+        
+        <h1 style="text-align: center; margin-bottom: 5px;">Live View</h1>
+        <p class="sub-titles" style="text-align: center; margin-bottom: 30px;">Real-time pet monitoring</p>
+
+        <div class="video-wrapper">
+            <img src="{{ url_for('video_feed') }}" class="img-fluid" alt="Video Feed" />
+        </div>
+
+        <div class="action-buttons">
+            <button type="button" class="custom-btn" onclick="sendCommand('/feed', 'feed=button_click')">🍖 Feed</button>
+            <button type="button" class="custom-btn" onclick="sendCommand('/flash_on', 'flash_on=button_click')">💡 Flash On</button>
+            <button type="button" class="custom-btn" onclick="sendCommand('/flash_off', 'flash_off=button_click')">🌙 Flash Off</button>
+        </div>
+
+        <hr style="opacity: 0.1; margin: 30px 0;">
+
+        <div class="action-buttons">
+            <a href="/settings" class="custom-btn nav-btn">⚙️ Settings</a>
+            <a href="/" class="custom-btn nav-btn">🏠 Exit</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function sendCommand(url, bodyContent) {
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: bodyContent
+        })
+        .then(response => {
+            if (response.ok) { console.log('Успех: ' + url) } 
+            else { console.error('Ошибка сервера') }
+        })
+        .catch(error => { console.error('Ошибка сети:', error) })
+    }
+</script>
+{% endblock %}
