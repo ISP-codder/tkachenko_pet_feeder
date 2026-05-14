@@ -14,7 +14,7 @@ body {
 	min-height: 100vh;
 	font-family: 'Inter', sans-serif;
 	background-color: #ffffff; /* Чистый белый фон */
-	overflow: hidden; /* Чтобы шары не создавали скролл */
+	overflow: auto; /* Чтобы шары не создавали скролл */
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -104,6 +104,7 @@ body {
 
 /* --- СТИЛЬ СТЕКЛЯННОЙ КАРТОЧКИ --- */
 .container-fluid {
+	overflow-y: auto;
 	flex-direction: column;
 	display: flex;
 	justify-content: center;
