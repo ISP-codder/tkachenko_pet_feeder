@@ -415,11 +415,17 @@
 
   function updatePanels() {
     const val = document.querySelector('input[name="schedule_mode"]:checked').value;
-    panels.interval.classList.toggle('active', val === 'интервал');
-    panels.timed.classList.toggle('active',    val === 'время');
+    panels.interval.classList.toggle('active', val === 'interval');
+    panels.timed.classList.toggle('active',    val === 'timed');
     document.querySelectorAll('#panel_timed input[type="time"]').forEach(input => {
-      input.required = (val === 'timed');
-    });
+    if (val === 'timed') {
+      input.required = true;
+      input.disabled = false; // Поле активно и валидируется
+    } else {
+      input.required = false;
+      input.disabled = true;  // Поле выключено, браузер игнорирует его при отправке формы
+    }
+  });
   }
 
   modeRadios.forEach(r => r.addEventListener('change', updatePanels));
